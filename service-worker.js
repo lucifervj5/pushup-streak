@@ -1,12 +1,13 @@
-self.addEventListener("install", e => {
-  e.waitUntil(
-    caches.open("streak-cache").then(cache => {
-      return cache.addAll([
-        "./",
-        "./index.html",
-        "./style.css",
-        "./script.js"
-      ]);
-    })
+const CACHE_NAME = "streak-cache-v100";
+
+self.addEventListener("install", event => {
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.map(key => caches.delete(key)))
+    )
   );
 });
