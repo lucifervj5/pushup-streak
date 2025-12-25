@@ -1,6 +1,6 @@
 {
   "name": "Streak",
-  "short_name": "Streak",
+  "short_name": "Streak+"
   "start_url": "./?v=2",
   "display": "standalone",
   "background_color": "#ff2e2e",
