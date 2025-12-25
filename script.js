@@ -10,6 +10,21 @@ const task2 = document.getElementById("task2");
 let streak = Number(localStorage.getItem("streak")) || 0;
 let lastDone = localStorage.getItem("lastDone");
 let today = new Date().toDateString();
+// Auto reset tasks if it's a new day
+let lastOpenDate = localStorage.getItem("lastOpenDate");
+
+if (lastOpenDate !== today) {
+  // New day detected
+  task1.checked = false;
+  task2.checked = false;
+  task1.disabled = false;
+  task2.disabled = false;
+  doneBtn.disabled = true;
+  messageEl.innerText = "";
+
+  localStorage.setItem("lastOpenDate", today);
+}
+
 
 function daysBetween(d1, d2) {
   return (new Date(d2) - new Date(d1)) / (1000 * 60 * 60 * 24);
