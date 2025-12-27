@@ -6,7 +6,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,17 +17,18 @@ body {
   width: 90%;
   max-width: 360px;
   background: rgba(0, 0, 0, 0.4);
-  border-radius: 16px;
-  padding: 24px 20px 28px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 18px;
+  padding: 26px 22px 30px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(10px);
 }
 
 h1 {
-  margin: 0 0 16px;
-  font-size: 22px;
+  margin: 0 0 18px;
+  font-size: 21px;
   text-align: center;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 #day,
@@ -37,13 +38,11 @@ h1 {
   font-size: 15px;
   opacity: 0.9;
 }
-
-.task {
-  margin-top: 22px;
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
+#streak {
+  color: #4ade80;
+  font-weight: 600;
 }
+
 
 .task label {
   display: flex;
@@ -61,17 +60,17 @@ h1 {
 
 button {
   width: 100%;
-  margin-top: 24px;
+  margin-top: 26px;
   padding: 14px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #0f172a;
+  background: #22c55e;
+  color: #052e16;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
+  transition: transform 0.12s ease, opacity 0.12s ease;
+} 
 
 button:disabled {
   opacity: 0.4;
@@ -103,12 +102,12 @@ button:active {
   outline: none;
   font-size: 14px;
 }
+.task,
 .water {
-  margin-top: 22px;
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.04);
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.035);
   border-radius: 14px;
-  text-align: center;
 }
 
 .water h2 {
@@ -124,12 +123,13 @@ button:active {
 }
 
 .water-buttons button {
-  padding: 8px 14px;
-  font-size: 14px;
+  padding: 8px 12px;
+  font-size: 13px;
   border-radius: 10px;
   background: rgba(34, 197, 94, 0.15);
   color: #22c55e;
   border: 1px solid rgba(34, 197, 94, 0.3);
+  white-space: nowrap;   /* 👈 THIS FIXES IT */
 }
 
 #waterStatus {
@@ -139,13 +139,13 @@ button:active {
 }
 .secondary-btn {
   width: 100%;
-  margin-top: 14px;
+  margin-top: 16px;
   padding: 10px;
   border-radius: 12px;
   background: transparent;
-  color: #cbd5f5;
-  border: 1px solid rgba(255,255,255,0.2);
-  font-size: 14px;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 13px;
 }
 /* Calendar – mobile first */
 #calendar {
