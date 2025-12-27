@@ -259,5 +259,28 @@ button:active {
 #historyScreen {
   transition: opacity 0.2s ease;
 }
+/* 🔒 Remove Android tap highlight & focus flash */
+button,
+label,
+input,
+textarea,
+div {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Remove blue focus ring */
+button:focus,
+label:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Remove active background flash */
+button:active,
+label:active {
+  background-color: inherit;
+}
 
 
