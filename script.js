@@ -9,7 +9,8 @@ const dayEl = document.getElementById("day");
 const messageEl = document.getElementById("message");
 const missedEl = document.getElementById("missed");
 
-const task1 = document.getElementById("task1");
+const pushSets = document.querySelectorAll(".push-set");
+
 const task2 = document.getElementById("task2");
 // Water elements
 const waterStatus = document.getElementById("waterStatus");
@@ -33,9 +34,13 @@ if (lastOpenDate) {
   localStorage.setItem("waterHistory", JSON.stringify(waterHistory));
 }
   // New day detected
-  task1.checked = false;
+  pushSets.forEach(set => {
+  set.checked = false;
+  set.disabled = false;
+});
+
   task2.checked = false;
-  task1.disabled = false;
+  
   task2.disabled = false;
   doneBtn.disabled = true;
   messageEl.innerText = "";
@@ -55,11 +60,18 @@ function daysBetween(d1, d2) {
 doneBtn.disabled = true;
 
 // Enable button only if both tasks are checked
-function checkTasks() {
-  doneBtn.disabled = !(task1.checked && task2.checked);
+function allPushSetsDone() {
+  return [...pushSets].every(set => set.checked);
 }
 
-task1.addEventListener("change", checkTasks);
+function checkTasks() {
+  doneBtn.disabled = !(allPushSetsDone() && task2.checked);
+}
+
+pushSets.forEach(set => {
+  set.addEventListener("change", checkTasks);
+});
+
 task2.addEventListener("change", checkTasks);
 
 // If a day was missed
@@ -89,7 +101,8 @@ dayEl.innerText = `Day: ${streak + 1}`;
 // If already completed today
 if (lastDone === today) {
   doneBtn.disabled = true;
-  task1.disabled = true;
+  pushSets.forEach(set => set.disabled = true);
+
   task2.disabled = true;
   messageEl.innerText = "Good. Come back tomorrow.";
 }
