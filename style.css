@@ -147,6 +147,26 @@ button:active {
   border: 1px solid rgba(255,255,255,0.2);
   font-size: 14px;
 }
+/* Calendar base layout (laptop & default) */
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin: 14px 0;
+}
+
+.day-cell {
+  min-height: 52px;
+  padding: 6px 4px;
+  font-size: 11px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
 
 /* Small phones like Vivo U20 */
 @media (max-width: 420px) {
