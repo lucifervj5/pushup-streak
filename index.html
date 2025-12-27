@@ -10,6 +10,8 @@
 <body>
 
   <div class="app">
+  <div id="mainScreen">
+
     <h1>Push-up Streak</h1>
 
     <p id="day"></p>
@@ -26,11 +28,39 @@
 </div>
 
 
-    <div id="missed"></div>
+    <div id="missed"></div> 
+
+      <div class="water">
+  <h2>💧 Water Intake</h2>
+
+  <div class="water-buttons">
+  <button id="water300">+300 ml</button>
+  <button id="water600">+600 ml</button>
+  <button id="waterRemove">−300 ml</button>
+</div>
+
+  <p id="waterStatus">Today: 0 ml / 2500 ml</p>
+</div>
+<button id="openHistory" class="secondary-btn">
+  Water History 📅
+</button>
 
     <button id="doneBtn">YES, I DID</button>
     <p id="message"></p>
   </div>
+  
+    <div id="historyScreen" style="display:none;">
+  <h2>💧 Water History</h2>
+
+  <p id="historyMonth"></p>
+
+  <div id="calendar"></div>
+
+  <button id="backToMain" class="secondary-btn">
+    ← Back
+  </button>
+</div>
+</div>
 
 <script src="script.js"></script>
 </body>
