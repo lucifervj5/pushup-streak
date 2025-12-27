@@ -152,14 +152,20 @@ button:active {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
-  margin: 12px 0;
+  margin: 14px 0;
 }
 
+/* Calendar day cell */
 .day-cell {
-  padding: 6px;
+  min-height: 52px;
+  padding: 6px 4px;
   font-size: 11px;
   text-align: center;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 8px;
-  white-space: pre-line;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
 }
