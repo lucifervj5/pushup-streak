@@ -1,6 +1,12 @@
 * {
   box-sizing: border-box;
 }
+/* Disable text selection for app-like feel */
+body {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 body {
   margin: 0;
@@ -11,7 +17,12 @@ body {
   align-items: center;
   justify-content: center;
   color: #fff;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
+
 
 .app {
   width: 90%;
