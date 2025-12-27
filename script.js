@@ -95,8 +95,8 @@ function resetStreak() {
 }
 
 // Show streak
-streakEl.innerText = `Current Streak: ${streak} 🔥`;
 dayEl.innerText = `Day: ${streak + 1}`;
+updateStreakUI();
 
 // If already completed today
 if (lastDone === today) {
@@ -112,12 +112,13 @@ doneBtn.onclick = () => {
   // Safety check
   if (!(allPushSetsDone() && task2.checked)) return;
 
+  // Increase streak ONCE
   streak += 1;
   localStorage.setItem("streak", streak);
-  streakEl.classList.remove("streak-pop");
-void streakEl.offsetWidth; // reset animation
-streakEl.classList.add("streak-pop");
   localStorage.setItem("lastDone", today);
+
+  // Update flame + number
+  updateStreakUI();
 
   doneBtn.disabled = true;
 
@@ -127,6 +128,30 @@ streakEl.classList.add("streak-pop");
 
   messageEl.innerText = "Good. Come back tomorrow.";
 };
+
+function updateStreakUI() {
+  const flame = document.getElementById("streakFlame");
+  const number = document.getElementById("streakNumber");
+
+  if (!flame || !number) return;
+
+  number.innerText = streak;
+
+  flame.className = "";
+  flame.innerText = "🔥";
+
+  if (streak >= 365) {
+    flame.classList.add("flame-black");
+  } else if (streak >= 180) {
+    flame.classList.add("flame-multi");
+  } else if (streak >= 90) {
+    flame.classList.add("flame-green");
+  } else if (streak >= 30) {
+    flame.classList.add("flame-blue");
+  } else if (streak >= 10) {
+    flame.classList.add("flame-red");
+  }
+}
 
 // ===== WATER TRACKING =====
 
