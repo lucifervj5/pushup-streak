@@ -202,5 +202,14 @@ button:active {
   }
 }
 
+.pushup-task {
+  margin-bottom: 12px;
+}
+
+.task-title {
+  margin-bottom: 6px;
+  font-size: 15px;
+  opacity: 0.9;
+}
 
 
