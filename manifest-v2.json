@@ -1,10 +1,10 @@
 {
   "name": "Streak",
-  "short_name": "Streak+"
+  "short_name": "Streak+",
   "start_url": "./?v=2",
   "display": "standalone",
-  "background_color": "#ff2e2e",
-  "theme_color": "#ff2e2e",
+  "background_color": "#0f2027",
+  "theme_color": "#0f2027",
   "icons": [
     {
       "src": "icon-192.png",
