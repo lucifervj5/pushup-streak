@@ -1,3 +1,8 @@
+const mainScreen = document.getElementById("mainScreen");
+const historyScreen = document.getElementById("historyScreen");
+const openHistory = document.getElementById("openHistory");
+const backToMain = document.getElementById("backToMain");
+
 const doneBtn = document.getElementById("doneBtn");
 const streakEl = document.getElementById("streak");
 const dayEl = document.getElementById("day");
@@ -6,14 +11,27 @@ const missedEl = document.getElementById("missed");
 
 const task1 = document.getElementById("task1");
 const task2 = document.getElementById("task2");
+// Water elements
+const waterStatus = document.getElementById("waterStatus");
+const water300 = document.getElementById("water300");
+const water600 = document.getElementById("water600");
+const waterRemove = document.getElementById("waterRemove");
 
 let streak = Number(localStorage.getItem("streak")) || 0;
 let lastDone = localStorage.getItem("lastDone");
 let today = new Date().toDateString();
+// Water data (stored in phone memory)
+let dailyWater = Number(localStorage.getItem("dailyWater")) || 0;
+let waterHistory = JSON.parse(localStorage.getItem("waterHistory")) || {};
 // Auto reset tasks if it's a new day
 let lastOpenDate = localStorage.getItem("lastOpenDate");
 
 if (lastOpenDate !== today) {
+  // Save yesterday's water into history
+if (lastOpenDate) {
+  waterHistory[lastOpenDate] = dailyWater;
+  localStorage.setItem("waterHistory", JSON.stringify(waterHistory));
+}
   // New day detected
   task1.checked = false;
   task2.checked = false;
@@ -21,6 +39,9 @@ if (lastOpenDate !== today) {
   task2.disabled = false;
   doneBtn.disabled = true;
   messageEl.innerText = "";
+    // Reset water for new day
+  dailyWater = 0;
+  localStorage.setItem("dailyWater", 0);
 
   localStorage.setItem("lastOpenDate", today);
 }
@@ -87,3 +108,71 @@ doneBtn.onclick = () => {
 
   messageEl.innerText = "Good. Come back tomorrow.";
 };
+// ===== WATER TRACKING =====
+
+// Update water text on screen
+function updateWaterUI() {
+  waterStatus.innerText = `Today: ${dailyWater} ml / 2500 ml`;
+}
+
+// +300 ml
+water300.onclick = () => {
+  dailyWater += 300;
+  localStorage.setItem("dailyWater", dailyWater);
+  updateWaterUI();
+};
+
+// +600 ml
+water600.onclick = () => {
+  dailyWater += 600;
+  localStorage.setItem("dailyWater", dailyWater);
+  updateWaterUI();
+};
+
+// −300 ml (undo)
+waterRemove.onclick = () => {
+  dailyWater = Math.max(0, dailyWater - 300);
+  localStorage.setItem("dailyWater", dailyWater);
+  updateWaterUI();
+};
+
+// Show water when app opens
+updateWaterUI();
+openHistory.onclick = () => {
+  mainScreen.style.display = "none";
+  historyScreen.style.display = "block";
+  renderCalendar();
+};
+
+backToMain.onclick = () => {
+  historyScreen.style.display = "none";
+  mainScreen.style.display = "block";
+};
+const calendar = document.getElementById("calendar");
+const historyMonth = document.getElementById("historyMonth");
+
+function renderCalendar() {
+  calendar.innerHTML = "";
+
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+
+  historyMonth.innerText = now.toLocaleString("default", {
+    month: "long",
+    year: "numeric"
+  });
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateKey = new Date(year, month, day).toDateString();
+    const ml = waterHistory[dateKey] || 0;
+
+    const box = document.createElement("div");
+    box.className = "day-cell";
+    box.innerText = `${day}\n${ml} ml`;
+
+    calendar.appendChild(box);
+  }
+}
