@@ -148,24 +148,17 @@ button:active {
   font-size: 14px;
 }
 
-#calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  margin: 14px 0;
+/* Small phones like Vivo U20 */
+@media (max-width: 420px) {
+  #calendar {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .day-cell {
+    min-height: 58px;
+    font-size: 12px;
+    padding: 6px;
+  }
 }
 
-/* Calendar day cell */
-.day-cell {
-  min-height: 52px;
-  padding: 6px 4px;
-  font-size: 11px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
-  white-space: normal;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1.2;
-}
