@@ -109,18 +109,22 @@ if (lastDone === today) {
 
 // Button click
 doneBtn.onclick = () => {
-  if (!(task1.checked && task2.checked)) return;
+  // Safety check
+  if (!(allPushSetsDone() && task2.checked)) return;
 
-  streak++;
+  streak += 1;
   localStorage.setItem("streak", streak);
   localStorage.setItem("lastDone", today);
 
   doneBtn.disabled = true;
-  task1.disabled = true;
+
+  // Disable all tasks
+  pushSets.forEach(set => set.disabled = true);
   task2.disabled = true;
 
   messageEl.innerText = "Good. Come back tomorrow.";
 };
+
 // ===== WATER TRACKING =====
 
 // Update water text on screen
