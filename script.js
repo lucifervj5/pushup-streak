@@ -114,6 +114,9 @@ doneBtn.onclick = () => {
 
   streak += 1;
   localStorage.setItem("streak", streak);
+  streakEl.classList.remove("streak-pop");
+void streakEl.offsetWidth; // reset animation
+streakEl.classList.add("streak-pop");
   localStorage.setItem("lastDone", today);
 
   doneBtn.disabled = true;
