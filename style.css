@@ -1,12 +1,6 @@
 * {
   box-sizing: border-box;
 }
-/* Disable text selection for app-like feel */
-body {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 
 body {
   margin: 0;
@@ -52,18 +46,12 @@ h1 {
   letter-spacing: 0.3px;
 }
 
-#day,
-#streak {
+#day {
   text-align: center;
   margin: 6px 0;
-  font-size: 15px;
-  opacity: 0.9;
-}
-#streak {
-  color: #4ade80;
-  font-weight: 600;
-}
-
+  font-size: 14px;
+  opacity: 0.8;
+} 
 
 .task label {
   display: flex;
@@ -103,9 +91,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button:active {
-  transform: scale(0.97);
-}
+
 button {
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
@@ -282,5 +268,53 @@ button:active,
 label:active {
   background-color: inherit;
 }
+#streak {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  margin: 10px 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 0.5px;
+}
+
+
+#streakFlame {
+  font-size: 28px;
+}
+
+/* Flame stages */
+.flame-red {
+  color: #ef4444;
+}
+
+.flame-blue {
+  color: #3b82f6;
+}
+
+.flame-green {
+  color: #22c55e;
+}
+
+.flame-black {
+  color: #111827;
+}
+
+/* Multi flame (6 months) */
+.flame-multi {
+  background: linear-gradient(
+    to top,
+    #22c55e,
+    #3b82f6,
+    #ef4444
+  );
+ background-clip: text;
+-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 
